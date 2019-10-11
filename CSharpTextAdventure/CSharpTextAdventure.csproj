@@ -64,6 +64,7 @@
     <Compile Include="Items\Portal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Systems\Helpers.cs" />
     <Compile Include="Systems\MagicUnlock.cs" />
     <Compile Include="Systems\PickUnlock.cs" />
   </ItemGroup>

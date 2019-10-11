@@ -40,7 +40,7 @@ namespace CSharpTextAdventure.Core
                 {
                     if (!AlsoSee)
                     {
-                        display += " You also see:";
+                        display += " You also see: ";
                     }
                     else
                     {

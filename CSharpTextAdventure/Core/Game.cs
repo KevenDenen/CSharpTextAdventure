@@ -52,10 +52,15 @@ namespace CSharpTextAdventure.Core
             locations.Add(attic);
 
             CurrentLocation = spawn;
+
+            Player.Inventory.Add(new Item("a", "small", "knife", "a small knife you could use to defend yourself"));
+            Player.Inventory.Add(new Item("an", "ivory", "tusk", "an ivory tusk from some unknown creature"));
+            Player.Inventory.Add(new Container("a", "", "backpack", "a backpack to carry your stuff"));
         }
 
         public void Run()
         {
+            bool running = true;
             CreatePlayer();
             AddLocations();
 
@@ -64,12 +69,12 @@ namespace CSharpTextAdventure.Core
             System.Threading.Thread.Sleep(1000);
 
             Console.WriteLine(CurrentLocation.Display);
-            while (true)
+            while (running)
             {
                 input = GetInput();
                 if (input == "q")
                 {
-                    break;
+                    running = false;
                 }
                 else if (input == "cls")
                 {
@@ -154,6 +159,9 @@ namespace CSharpTextAdventure.Core
                         {
                             return Go(command);
                         }
+                    case "inventory":
+                    case "inv":
+                        return Player.PrintInventory();
                     default:
                         break;
                 }
