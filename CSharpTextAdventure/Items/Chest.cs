@@ -4,7 +4,7 @@ namespace CSharpTextAdventure.Items
 {
     class Chest : Container, ILockable, IOpenable
     {
-        public Chest(string article, string adjective, string noun, string description) : base(article, adjective, noun, description) { }
+        public Chest(string article, string adjective, string noun, string description = "") : base(article, adjective, noun, description) { }
 
         public bool Locked { get; set; }
         public int LockStrength { get; set; }

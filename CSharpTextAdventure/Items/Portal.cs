@@ -5,7 +5,7 @@ namespace CSharpTextAdventure.Items
 {
     class Portal : GameObject, ILockable, IOpenable
     {
-        public Portal(string article, string adjective, string noun, string description) : base(article, adjective, noun, description)
+        public Portal(string article, string adjective, string noun, string description = "") : base(article, adjective, noun, description)
         {
             Open = false;
         }
