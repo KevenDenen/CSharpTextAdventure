@@ -67,8 +67,9 @@ namespace CSharpTextAdventure.Core
             var input = "";
             Console.WriteLine("Welcome to Game");
             System.Threading.Thread.Sleep(1000);
-
+                       
             Console.WriteLine(CurrentLocation.Display);
+
             while (running)
             {
                 input = GetInput();
@@ -144,29 +145,66 @@ namespace CSharpTextAdventure.Core
                     case "look":
                         if (command.Length == 1)
                         {
+                            // look
                             return CurrentLocation.Display;
                         }
                         else
                         {
+                            // look item
                             return Look(command);
                         }
                     case "go":
                         if (command.Length == 1)
                         {
+                            // go
                             return "Where would you like to go?";
                         }
                         else
                         {
+                            // go portal
                             return Go(command);
                         }
                     case "inventory":
                     case "inv":
                         return Player.PrintInventory();
+                    case "get":
+                        return GetItem(command);
                     default:
                         break;
                 }
             }
             return "Sorry, I don't understand that command.";
+        }
+
+        private string GetItem(string[] command)
+        {
+            string result = "";
+
+            if (command.Length == 2)
+            {
+                // get item
+                Item target = Player.Inventory.Find(command[1]);
+                GameObject targetObject = null;
+
+                if (target == null)
+                {
+                    targetObject = CurrentLocation.FindTarget(command[1]);
+                    if (targetObject is Item)
+                    {
+                        target = (Item) targetObject;
+                    }
+                }
+
+                if (target != null)
+                    result = Player.PickUp(target);
+                else if (targetObject != null)
+                    result = $"You cannot pick up {targetObject}.";
+                else
+                    result = $"Cannot find {command[1]}.";
+
+            }
+
+            return result;
         }
 
         private string Go(string[] command)

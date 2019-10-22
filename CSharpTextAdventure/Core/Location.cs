@@ -13,7 +13,7 @@ namespace CSharpTextAdventure.Core
         {
             Name = name;
             Description = description;
-            Items = new List<Item>();
+            Items = new Container("a", "room", "items");
             Monsters = new List<Monster>();
             Directions = new Dictionary<Direction, DirectionalPortal>();
             Portals = new List<Portal>();
@@ -21,7 +21,7 @@ namespace CSharpTextAdventure.Core
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Item> Items { get; private set; }
+        public Container Items { get; private set; }
         public List<Monster> Monsters { get; private set; }
         public List<Portal> Portals { get; private set; }
         public Dictionary<Direction, DirectionalPortal> Directions { get; set; }
@@ -46,7 +46,7 @@ namespace CSharpTextAdventure.Core
                     {
                         display += ", ";
                     }
-                    display += string.Join(", ", Items);
+                    display += string.Join(", ", Items.Contents);
                     AlsoSee = true;
                 }
 
@@ -155,7 +155,7 @@ namespace CSharpTextAdventure.Core
 
         private GameObject FindItem(string noun, string adjective)
         {
-            var matchingItems = Items.Where(i => i.Noun == noun);
+            var matchingItems = Items.Contents.Where(i => i.Noun == noun);
             if (adjective != "")
             {
                 return matchingItems.FirstOrDefault(i => i.Adjective == adjective);

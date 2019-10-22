@@ -1,5 +1,5 @@
 ﻿using CSharpTextAdventure.Interfaces;
-using System.Collections.Generic;
+using CSharpTextAdventure.Items;
 
 namespace CSharpTextAdventure.Core
 {
@@ -18,6 +18,6 @@ namespace CSharpTextAdventure.Core
         public int Defense { get; set; }
         public float DefenseChance { get; set; }
         public int Gold { get; set; }
-        public List<GameObject> Inventory { get; set; }
+        public Container Inventory { get; set; }
     }
 }
